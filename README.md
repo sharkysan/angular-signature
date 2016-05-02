@@ -1,5 +1,7 @@
 # Angular signature
 
+FORK from [angular-signature](https://github.com/legalthings/angular-signature)
+
 AngularJS directive for the [signature pad](https://github.com/szimek/signature_pad/) JavaScript library by szimek.
 
 _In contrast to other AngularJS modules for szimek's signature pad, this library doesn't apply any styling. The

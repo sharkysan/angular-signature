@@ -49,33 +49,22 @@ angular.module('signature').directive('signaturePad', ['$window',
           });
         }
       ],
-      link: function (scope, element) {
-        canvas = element.find('canvas')[0];
-        scope.signaturePad = new SignaturePad(canvas);
+        link: function (scope, element) {
+            canvas = element.find('canvas')[0];
+            scope.signaturePad = new SignaturePad(canvas);
 
-        if (!scope.height) scope.height = 220;
-        if (!scope.width) scope.width = 568;
+            if (!scope.height) scope.height = 220;
+            if (!scope.width) scope.width = 568;
 
-        if (scope.signature && !scope.signature.$isEmpty && scope.signature.dataUrl) {
-          scope.signaturePad.fromDataURL(scope.signature.dataUrl);
+            if (scope.signature && !scope.signature.$isEmpty && scope.signature.dataUrl) {
+                scope.signaturePad.fromDataURL(scope.signature.dataUrl);
+            }
+
+            var ratio =  Math.max($window.devicePixelRatio || 1, 1);
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            canvas.getContext("2d").scale(ratio, ratio);
         }
-
-        scope.onResize = function() {
-          var data = scope.signaturePad.toDataURL();
-          var canvas = element.find('canvas')[0];
-          var ratio =  Math.max($window.devicePixelRatio || 1, 1);
-          canvas.width = canvas.offsetWidth * ratio;
-          canvas.height = canvas.offsetHeight * ratio;
-          canvas.getContext("2d").scale(ratio, ratio);
-          scope.signaturePad.fromDataURL(data);
-        }
-
-        scope.onResize();
-
-        angular.element($window).bind('resize', function() {
-            scope.onResize();
-        });
-      }
     };
   }
 ]);
