@@ -45,7 +45,6 @@ angular.module('signature').directive('signaturePad', ['$window',
 
                     $scope.$watch("dataurl", function (dataUrl) {
                         if (dataUrl) {
-                            console.log('SIGNATURE: DATA URL: ' + dataUrl);
                             $scope.signaturePad.fromDataURL(dataUrl);
                         }
                     });
